@@ -4,9 +4,9 @@ using UnityEngine.Splines;
 namespace Shmup {
     public class EnemySpawner : MonoBehaviour {
         [SerializeField] List<EnemyType> enemyTypes;
-        [SerializeField] int maxEnemies = 10;
+        [SerializeField] int maxEnemies = 6;
         [SerializeField] float spawnInterval = 2f;
-        
+        [SerializeField] float spawnDelay = 0f;
         List<SplineContainer> splines;
         EnemyFactory enemyFactory;
         

@@ -38,12 +38,8 @@ namespace Shmup {
             splineAnimate.ObjectUpAxis = SplineAnimate.AlignAxis.ZAxis;
             splineAnimate.ObjectForwardAxis = SplineAnimate.AlignAxis.YAxis;
             splineAnimate.MaxSpeed = speed;
-            
-            // Weapons in Part 3
-            
-            // Set instance transform to spline start position
+           
             instance.transform.position = spline.EvaluatePosition(0f);
-            // NOTE: if instantiating waves, could set the position along the spline in a staggered value 0f to 1f
             splineAnimate.Restart(true);
 
             return instance;
