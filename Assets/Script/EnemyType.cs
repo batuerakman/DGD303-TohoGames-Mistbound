@@ -6,5 +6,6 @@ namespace Shmup {
         public GameObject enemyPrefab;
         public GameObject weaponPrefab;
         public float speed = 2f;
+        public float maxHealth = 100f;
     }
 }

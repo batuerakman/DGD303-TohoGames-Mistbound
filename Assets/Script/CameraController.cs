@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Shmup {
     public class CameraController : MonoBehaviour {
-        [SerializeField] Transform player;
-        [SerializeField] float speed = 2f;
-        
+        [SerializeField] private Transform player;
+        [SerializeField] private float speed = 2f;
+        public float Speed => speed;
         void Start() => transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
 
         void LateUpdate() {

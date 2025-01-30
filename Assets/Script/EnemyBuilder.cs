@@ -4,14 +4,13 @@ using Utilities;
 
 namespace Shmup {
     public class EnemyBuilder {
-        GameObject enemyPrefab;
+        readonly GameObject enemyPrefab;
         SplineContainer spline;
         GameObject weaponPrefab;
         float speed;
         
-        public EnemyBuilder SetBasePrefab(GameObject prefab) {
+        public EnemyBuilder(GameObject prefab) {
             enemyPrefab = prefab;
-            return this;
         }
         
         public EnemyBuilder SetSpline(SplineContainer spline) {
@@ -30,17 +29,21 @@ namespace Shmup {
         }
 
         public GameObject Build() {
+            if (enemyPrefab == null) return null;
+            
             GameObject instance = GameObject.Instantiate(enemyPrefab);
             
-            SplineAnimate splineAnimate = instance.GetOrAdd<SplineAnimate>();
-            splineAnimate.Container = spline;
-            splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
-            splineAnimate.ObjectUpAxis = SplineAnimate.AlignAxis.ZAxis;
-            splineAnimate.ObjectForwardAxis = SplineAnimate.AlignAxis.YAxis;
-            splineAnimate.MaxSpeed = speed;
+            if (spline != null) {
+                SplineAnimate splineAnimate = instance.GetOrAdd<SplineAnimate>();
+                splineAnimate.Container = spline;
+                splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
+                splineAnimate.ObjectUpAxis = SplineAnimate.AlignAxis.ZAxis;
+                splineAnimate.ObjectForwardAxis = SplineAnimate.AlignAxis.YAxis;
+                splineAnimate.MaxSpeed = speed;
            
-            instance.transform.position = spline.EvaluatePosition(0f);
-            splineAnimate.Restart(true);
+                instance.transform.position = spline.EvaluatePosition(0f);
+                splineAnimate.Restart(true);
+            }
 
             return instance;
         }
